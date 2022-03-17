@@ -6,6 +6,10 @@
 > Assignment Project for Generation Thailand (Juniour Fullstack Software Developer) !
 
 ### ✨ [Demo](https://jsd-sha-jammming.netlify.app)
+Currently Spotify API is still in Development mode .
+There might can't use on Demo
+
+But ! You guys can clone this project and change ClientId to your Spotify API !
 
 ## Install
 
