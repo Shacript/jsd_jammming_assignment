@@ -19,12 +19,6 @@ npm install
 npm run start
 ```
 
-## Run tests
-
-```sh
- 
-```
-
 ## Author
 
 👤 **Aphisit Likitwattnapaisarn (Shacript)**
