@@ -1,5 +1,5 @@
-const SpotifyClientId = "640a44ed21384b75ba804bdeae32e6a1";
-const RedirectURI = "https://jsd-sha-jammming.netlify.app/";
+const SpotifyClientId = "640a44ed21384b75ba804bdeae32e6a1"; // Change this !
+const RedirectURI = "https://jsd-sha-jammming.netlify.app/"; // Change this !
 
 let userAccessToken;
 
