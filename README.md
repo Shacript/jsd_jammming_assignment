@@ -9,7 +9,7 @@
 Currently Spotify API is still in Development mode .
 There might can't use on Demo
 
-But ! You guys can clone this project and change ClientId to your Spotify API !
+But ! You guys can clone this project and change ClientId,RedirectURI (src/util/Spotify.js) to your Spotify API !
 
 ## Install
 
