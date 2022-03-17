@@ -12,7 +12,7 @@ There might can't use on Demo
 But ! You guys can clone this project and change ClientId,RedirectURI (src/util/Spotify.js) to your Spotify API !
 
 ## Preview Image
-![Imgur](https://imgur.com/wLx6S15)
+![Imgur](https://i.imgur.com/wLx6S15.jpg)
 
 ## Install
 
