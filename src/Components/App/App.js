@@ -47,6 +47,10 @@ function App() {
     });
   };
 
+  const searchFiltered = () => {
+    return searchResults.filter((searchTrack) => !playlistTracks.find(playlistTrack => searchTrack.id === playlistTrack.id))
+  }
+
   return (
     <div>
       <h1>
@@ -55,7 +59,7 @@ function App() {
       <div className="App">
         <SearchBar onSearch={search} />
         <div className="App-playlist">
-          <SearchResults searchResults={searchResults} onAdd={addTrack} />
+          <SearchResults searchResults={searchFiltered} onAdd={addTrack} />
           <Playlist
             playlistName={playlistName}
             playlistTracks={playlistTracks}
