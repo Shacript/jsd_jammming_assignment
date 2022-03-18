@@ -1,9 +1,9 @@
 const SpotifyClientId = "640a44ed21384b75ba804bdeae32e6a1"; // Change this !
-const RedirectURI = "https://jsd-sha-jammming.netlify.app/"; // Change this !
-// const RedirectURI = "http://localhost:3000/"
+// const RedirectURI = "https://jsd-sha-jammming.netlify.app/"; // Change this !
+const RedirectURI = "http://localhost:3000/"
 
 let userAccessToken = localStorage.getItem("userAccessToken");
-const userExpires = localStorage.getItem("userExpires") || 0;
+let userExpires = localStorage.getItem("userExpires") || 0;
 
 const Spotify = {
   getAccessToken() {
@@ -11,13 +11,13 @@ const Spotify = {
     if(userAccessToken){
       const date = new Date()
       
-      if(date.getTime() < userExpires){
+      if(date.getTime() > Number(userExpires)){
         userAccessToken = null
         localStorage.setItem("userAccessToken", null);
       }else{
+        console.log(userAccessToken)
         return;
       }
-
     }
 
     const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
@@ -44,6 +44,7 @@ const Spotify = {
     }
   },
   async search(term) {
+    console.log(userAccessToken)
     const response = await fetch(
       `https://api.spotify.com/v1/search?type=track&q=${term}`,
       {
