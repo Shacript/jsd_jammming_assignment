@@ -59,7 +59,7 @@ function App() {
       <div className="App">
         <SearchBar onSearch={search} />
         <div className="App-playlist">
-          <SearchResults searchResults={searchFiltered} onAdd={addTrack} />
+          <SearchResults searchResults={searchFiltered()} onAdd={addTrack} />
           <Playlist
             playlistName={playlistName}
             playlistTracks={playlistTracks}

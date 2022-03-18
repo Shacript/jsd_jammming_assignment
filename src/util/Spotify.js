@@ -1,5 +1,6 @@
 const SpotifyClientId = "640a44ed21384b75ba804bdeae32e6a1"; // Change this !
 const RedirectURI = "https://jsd-sha-jammming.netlify.app/"; // Change this !
+// const RedirectURI = "http://localhost:3000/"
 
 let userAccessToken;
 
