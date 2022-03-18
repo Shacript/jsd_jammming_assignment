@@ -16,7 +16,8 @@ function App() {
   const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
-    Spotify.getAccessToken();
+    Spotify.getAccessToken()
+    Spotify.getMyPlaylist()
   }, []);
 
   const addTrack = (track) => {

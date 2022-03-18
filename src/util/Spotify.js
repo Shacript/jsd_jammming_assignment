@@ -1,6 +1,6 @@
 const SpotifyClientId = "640a44ed21384b75ba804bdeae32e6a1"; // Change this !
-const RedirectURI = "https://jsd-sha-jammming.netlify.app/"; // Change this !
-// const RedirectURI = "http://localhost:3000/"
+// const RedirectURI = "https://jsd-sha-jammming.netlify.app/"; // Change this !
+const RedirectURI = "http://localhost:3000/"
 
 let userAccessToken = localStorage.getItem("userAccessToken");
 let userExpires = localStorage.getItem("userExpires") || 0;
@@ -15,7 +15,6 @@ const Spotify = {
         userAccessToken = null
         localStorage.setItem("userAccessToken", null);
       }else{
-        console.log(userAccessToken)
         return;
       }
     }
@@ -92,6 +91,27 @@ const Spotify = {
       body: JSON.stringify({ uris: trackURIs }),
     });
   },
+  async getMyPlaylist(){
+    const headers = {
+      Authorization: `Bearer ${userAccessToken}`,
+    };
+
+    const responseMe = await fetch("https://api.spotify.com/v1/me", {
+      headers,
+    });
+    const responseMeJson = await responseMe.json();
+    const userId = responseMeJson.id;
+
+    const responsePlaylists = await fetch(
+      `https://api.spotify.com/v1/users/${userId}/playlists`,
+      {
+        headers
+      }
+    );
+    const responsePlaylistsJson = await responsePlaylists.json();
+
+    console.log(responsePlaylistsJson)
+  }
 };
 
 export default Spotify;
