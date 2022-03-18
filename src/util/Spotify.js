@@ -2,17 +2,39 @@ const SpotifyClientId = "640a44ed21384b75ba804bdeae32e6a1"; // Change this !
 const RedirectURI = "https://jsd-sha-jammming.netlify.app/"; // Change this !
 // const RedirectURI = "http://localhost:3000/"
 
-let userAccessToken;
+let userAccessToken = localStorage.getItem("userAccessToken");
+const userExpires = localStorage.getItem("userExpires") || 0;
 
 const Spotify = {
   getAccessToken() {
+
+    if(userAccessToken){
+      const date = new Date()
+      
+      if(date.getTime() < userExpires){
+        userAccessToken = null
+        localStorage.setItem("userAccessToken", null);
+      }else{
+        return;
+      }
+
+    }
+
     const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
     const expiresInMatch = window.location.href.match(/expires_in=([^&]*)/);
 
     if (accessTokenMatch && expiresInMatch) {
-      userAccessToken = accessTokenMatch[1];
+      
+      const date = new Date()
+
+      userAccessToken = localStorage.setItem("userAccessToken", accessTokenMatch[1]);
+      localStorage.setItem("userExpires", (date.getTime() + Number(expiresInMatch[1]) * 1000))
+
       window.setTimeout(
-        () => (userAccessToken = null),
+        () => {
+          userAccessToken = null
+          localStorage.setItem("userAccessToken", null);
+        },
         Number(expiresInMatch[1]) * 1000
       );
       window.history.pushState("Access Token", null, "/");
