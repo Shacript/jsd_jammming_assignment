@@ -13,6 +13,7 @@ function App() {
 
   const [playlistName, setPlaylistName] = useState("New Playlist");
   const [playlistTracks, setPlaylistTracks] = useState([]);
+  const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
     Spotify.getAccessToken();
@@ -34,10 +35,12 @@ function App() {
   };
 
   const savePlaylist = () => {
+    setIsSaving(true)
     const trackURIs = playlistTracks.map((track) => track.uri);
     Spotify.savePlaylist(playlistName, trackURIs).then(() => {
       setPlaylistTracks([]);
       setPlaylistName("New Playlist");
+      setIsSaving(false)
     });
   };
 
@@ -66,6 +69,7 @@ function App() {
             onNameChange={updatePlaylistName}
             onRemove={removeTrack}
             onSave={savePlaylist}
+            isSaving={isSaving}
           />
         </div>
       </div>
