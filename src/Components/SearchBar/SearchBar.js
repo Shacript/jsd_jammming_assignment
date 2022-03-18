@@ -2,15 +2,15 @@ import { useState } from "react";
 import "./SearchBar.css";
 
 const SearchBar = ({ onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState(localStorage.getItem('searchTerm') || '');
 
   const search = () => {
     onSearch(searchTerm);
-    setSearchTerm("");
   };
 
   const handleTermChange = (e) => {
     setSearchTerm(e.target.value);
+    localStorage.setItem('searchTerm', e.target.value);
   };
 
   const handleTermEnter = (e) => {

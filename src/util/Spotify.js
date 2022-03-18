@@ -34,6 +34,7 @@ const Spotify = {
         () => {
           userAccessToken = null
           localStorage.setItem("userAccessToken", null);
+          Spotify.getAccessToken();
         },
         Number(expiresInMatch[1]) * 1000
       );

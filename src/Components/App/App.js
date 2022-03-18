@@ -11,8 +11,8 @@ import Playlist from "../Playlist/Playlist";
 function App() {
   const [searchResults, setSearchResults] = useState([]);
 
-  const [playlistName, setPlaylistName] = useState("New Playlist");
-  const [playlistTracks, setPlaylistTracks] = useState([]);
+  const [playlistName, setPlaylistName] = useState(localStorage.getItem("playlistName") || "New Playlist");
+  const [playlistTracks, setPlaylistTracks] = useState(JSON.parse(localStorage.getItem("playlistTracks")) || []);
   const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
@@ -22,16 +22,19 @@ function App() {
   const addTrack = (track) => {
     if (playlistTracks.find((prevTrack) => prevTrack.id === track.id)) return;
     setPlaylistTracks([...playlistTracks, track]);
+    localStorage.setItem("playlistTracks", JSON.stringify(playlistTracks))
   };
 
   const removeTrack = (track) => {
     setPlaylistTracks(
       playlistTracks.filter((prevTrack) => prevTrack.id !== track.id)
     );
+    localStorage.setItem("playlistTracks", JSON.stringify(playlistTracks))
   };
 
   const updatePlaylistName = (name) => {
     setPlaylistName(name);
+    localStorage.setItem("playlistName", name)
   };
 
   const savePlaylist = () => {
@@ -40,6 +43,8 @@ function App() {
     Spotify.savePlaylist(playlistName, trackURIs).then(() => {
       setPlaylistTracks([]);
       setPlaylistName("New Playlist");
+      localStorage.setItem("playlistTracks", JSON.stringify([]));
+      localStorage.setItem("playlistName", "New Playlist");
       setIsSaving(false)
     });
   };
